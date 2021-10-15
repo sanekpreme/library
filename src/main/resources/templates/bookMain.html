@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Collection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+<!--    <h1>Search</h1>-->
+<!--    <div th:each = "book : ${books}">-->
+<!--        <form method="post" action="filter">-->
+<!--            <input type="text" name="filter" placeholder="enter title" class="form-control">-->
+<!--            <button type="submit" class="btn btn-info">Search</button>-->
+<!--        </form>-->
+<!--    </div>-->
+    <h1> Collection</h1>
+    <div th:each="el : ${books}" class="alert alert-info mt-2">
+        <h3 th:text="${el.title}"/>
+        <p th:text="${el.author}"/>
+        <a th:href="'/book/' + ${el.id}" class="btn btn-warning">View</a>
+    </div>
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
