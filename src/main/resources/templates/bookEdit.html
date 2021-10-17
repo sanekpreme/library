@@ -11,20 +11,20 @@
 <div class="container mt-5 mb-5">
     <h1>Edit book</h1>
     <div th:each="el : ${book}">
-        <form method="post">
-            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <form method="post" enctype="multipart/form-data">
             <input type="text" th:value="${el.title}" name="title" placeholder="enter name" class="form-control"><br>
             <input type="text" th:value="${el.author}" name="author" placeholder="enter author" class="form-control"><br>
             <input type="text" th:value="${el.binding}" name="binding" placeholder="enter binding" class="form-control"><br>
             <input type="text" th:value="${el.isbn}" name="isbn" placeholder="enter isbn" class="form-control"><br>
             <input type="text" th:value="${el.yearOfPublishing}" name="yearOfPublishing" placeholder="enter year of publishing" class="form-control"><br>
             <input type="text" th:value="${el.circulation}" name="circulation" placeholder="enter circulation" class="form-control"><br>
+            <input type="file" th:value="${el.filename}" name="file" placeholder="add new file" class="form-control"><br>
             <button type="submit" class="btn btn-success">Update</button>
         </form>
     </div>
 </div>
 
-
+<!--<input type="file" name="file" class="form-control"><br>-->
 <div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

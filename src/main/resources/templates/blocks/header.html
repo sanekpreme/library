@@ -1,6 +1,6 @@
 <div th:fragment="header" xmlns:form="http://www.w3.org/1999/html" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:th="https://www.thymeleaf.org" >
     <div class="container">
-        <header class="blog-header py-3">
+        <header class="blog-header py-3" >
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
                     <a class="link-secondary" href="https://github.com/sanekpreme?tab=repositories">Subscribe</a>
@@ -19,12 +19,13 @@
                     <form action="http://localhost:8080/login?logout" method="POST">
                         <input type="submit" value="logout"/>
                     </form>
+
                     </div>
                 </div>
             </div>
         </header>
 
-        <div class="nav-scroller py-1 mb-2">
+        <div class="nav-scroller">
             <nav class="nav d-flex justify-content-between">
                 <h3><a class="p-2 link-secondary" href="/book">Collection</a></h3>
                 <h3><a class="p-2 link-secondary" href="/about">About</a></h3>

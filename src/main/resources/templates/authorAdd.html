@@ -10,10 +10,11 @@
 
 <div class="container mt-5 mb-5">
   <h1> Add author</h1>
-  <form action="/author/add" method="post">
+  <form action="/author/add" method="post" enctype="multipart/form-data">
     <input type="text" name="AuthorName" placeholder="enter name" class="form-control"><br>
     <input type="text" name="AuthorCountry" placeholder="enter author country" class="form-control"><br>
     <input type="text" name="AuthorDetails" placeholder="enter author details" class="form-control"><br>
+    <input type="file" name="file" class="form-control"><br>
     <button type="submit" class="btn btn-success">Add author</button>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   </form>

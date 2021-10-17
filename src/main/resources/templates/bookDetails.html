@@ -19,7 +19,7 @@
         <p><b>Circulation:</b> <span th:text="${el.circulation}"/></p>
         <p><b>Post author:</b> <span th:text="${el.postAuthorName}"/></p>
         <p><b>Post author:</b> <span th:text="${el.postAuthorName}"/></p>
-
+        <img th:src="@{/img/{filename}(filename = ${el.filename})}" width="200" height="200"><br><br>
         <a th:href="'/book/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action="'/book/' + ${el.id} + '/remove'" method="post">
             <button class="btn btn-warning" type="submit">Delete</button>

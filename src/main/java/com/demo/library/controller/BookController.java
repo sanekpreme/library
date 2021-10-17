@@ -114,14 +114,32 @@ public class BookController {
                                  @RequestParam String binding,
                                  @RequestParam String isbn,
                                  @RequestParam String yearOfPublishing,
-                                 @RequestParam int circulation, Model model) {
+                                 @RequestParam int circulation,
+                                 @RequestParam("file") MultipartFile file,
+                                 Model model) throws IOException {
         Book book = bookRepository.findById(id).orElseThrow();
+        if (file != null && !file.getOriginalFilename().isEmpty()) {
+            File uploadDir = new File(uploadPath);
+
+            if (!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
+
+            book.setFilename(resultFileName);
+        }
+
         book.setTitle(title);
         book.setAuthor(author);
         book.setBinding(binding);
         book.setIsbn(isbn);
         book.setYearOfPublishing(yearOfPublishing);
         book.setCirculation(circulation);
+
         bookRepository.save(book);
 
         return "redirect:/book";

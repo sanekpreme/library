@@ -11,11 +11,12 @@
 <div class="container mt-5 mb-5">
     <h1>Edit author</h1>
     <div th:each="el : ${author}">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
             <input type="text" th:value="${el.AuthorName}" name="AuthorName" placeholder="enter name" class="form-control"><br>
             <input type="text" th:value="${el.AuthorDetails}" name="AuthorDetails" placeholder="enter details" class="form-control"><br>
             <input type="text" th:value="${el.AuthorCountry}" name="AuthorCountry" placeholder="enter country" class="form-control"><br>
+            <input type="file" th:value="${el.filename}" name="file" placeholder="add new file" class="form-control"><br>
 
             <button type="submit" class="btn btn-success">Update</button>
         </form>
