@@ -11,8 +11,30 @@ public class Book {
 
     private String title, author, binding, isbn, yearOfPublishing;
     private int circulation;
+//    private int categoryId;
+
+//    public int getCategoryId() {
+//        return categoryId;
+//    }
+//
+//    public void setCategoryId(int categoryId) {
+//        this.categoryId = categoryId;
+//    }
+
+//    public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 
     private String filename;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+
+//    private Category category;
 
     public Book() {
     }
@@ -25,6 +47,7 @@ public class Book {
         this.yearOfPublishing = yearOfPublishing;
         this.circulation = circulation;
         this.postAuthor = user;
+//        this.categoryId = categoryId;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

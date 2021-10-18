@@ -53,6 +53,7 @@ public class BookController {
                               @RequestParam String isbn,
                               @RequestParam String yearOfPublishing,
                               @RequestParam int circulation,
+//                              @RequestParam int categoryId,
                               @RequestParam("file") MultipartFile file,
                               @AuthenticationPrincipal User user,
                               Model model) throws IOException {
@@ -115,6 +116,7 @@ public class BookController {
                                  @RequestParam String isbn,
                                  @RequestParam String yearOfPublishing,
                                  @RequestParam int circulation,
+//                                 @RequestParam int categoryId,
                                  @RequestParam("file") MultipartFile file,
                                  Model model) throws IOException {
         Book book = bookRepository.findById(id).orElseThrow();
@@ -139,6 +141,7 @@ public class BookController {
         book.setIsbn(isbn);
         book.setYearOfPublishing(yearOfPublishing);
         book.setCirculation(circulation);
+//        book.setCategoryId(categoryId);
 
         bookRepository.save(book);
 

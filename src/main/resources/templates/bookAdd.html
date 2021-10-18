@@ -14,7 +14,7 @@
     <form action="/book/add" method="post" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="enter name" class="form-control"><br>
         <input type="text" name="author" placeholder="enter author" class="form-control"><br>
-        <input type="text" class="form-control"><br>
+<!--        <input type="text" class="form-control"><br>-->
 <!--        <select>-->
 <!--            <option th:value="${AuthorName}" th:text="${AuthorName}"></option>-->
 <!--        </select>-->
@@ -22,6 +22,12 @@
         <input type="text" name="isbn" placeholder="enter isbn" class="form-control"><br>
         <input type="text" name="yearOfPublishing" placeholder="enter year of publishing" class="form-control"><br>
         <input type="text" name="circulation" placeholder="enter circulation" class="form-control"><br>
+<!--        <select class="form-control" th:field="*{categoryId}" id="category" name="category">-->
+<!--            <option th:each="category :${categories}"-->
+<!--                    th:value="${category.id}"-->
+<!--                    th:text="${category.name}"-->
+<!--            >-->
+        </select>
         <input type="file" name="file" class="form-control"><br>
         <button type="submit" class="btn btn-success">Add book</button>
     </form>
