@@ -5,23 +5,31 @@
     <title>Collection</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-
+<div class="container">
 <div class="container mt-5 mb-5">
     <h1> Add book</h1>
-    <form action="/book/add" method="post" enctype="multipart/form-data">
+    <form action="/book/add" method="post" th:object="${bookDTO}" enctype="multipart/form-data">
         <input type="text" name="title" placeholder="enter name" class="form-control"><br>
-        <input type="text" name="author" placeholder="enter author" class="form-control"><br>
-<!--        <input type="text" class="form-control"><br>-->
-<!--        <select>-->
-<!--            <option th:value="${AuthorName}" th:text="${AuthorName}"></option>-->
-<!--        </select>-->
+        <input type="text" name="description" placeholder="enter description" class="form-control"><br>
+        <select class="form-control" th:field="*{authorId}" id="author" name="author">
+            <option th:each="author :${authors}"
+                    th:value="${author.id}"
+                    th:text="${author.authorName}"
+            >
+        </select><br>
         <input type="text" name="binding" placeholder="enter binding" class="form-control"><br>
         <input type="text" name="isbn" placeholder="enter isbn" class="form-control"><br>
         <input type="text" name="yearOfPublishing" placeholder="enter year of publishing" class="form-control"><br>
-        <input type="text" name="circulation" placeholder="enter circulation" class="form-control"><br>
+        <input type="text" name="circulation" placeholder="enter circulation" class="form-control"><br><br>
+        <input type="text" name="price" placeholder="enter price" class="form-control"><br>
 <!--        <select class="form-control" th:field="*{categoryId}" id="category" name="category">-->
 <!--            <option th:each="category :${categories}"-->
 <!--                    th:value="${category.id}"-->
@@ -34,5 +42,11 @@
 </div>
 
 <div th:insert="blocks/footer :: footer"></div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</div>
 </body>
 </html>

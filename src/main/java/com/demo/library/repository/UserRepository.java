@@ -2,7 +2,12 @@ package com.demo.library.repository;
 
 import com.demo.library.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
+
     User findByUsername(String username);
+
+    User findByActivationCode(String code);
 }

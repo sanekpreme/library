@@ -4,6 +4,11 @@
     <title>Collection</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
@@ -12,13 +17,14 @@
     <h1> </h1>
     <div th:each="el : ${book}" class="alert alert-info mt-2" enctype="multipart/form-data">
         <h3 th:text="${el.title}"/>
-        <p><b>Author:</b> <span th:text="${el.author}"/></p>
+        <p><b>Author:</b> <span th:text="${el.author.authorName}"/></p>
         <p><b>Binding:</b> <span th:text="${el.binding}"/></p>
         <p><b>ISBN:</b> <span th:text="${el.isbn}"/></p>
         <p><b>Year of publishing:</b> <span th:text="${el.yearOfPublishing}"/></p>
         <p><b>Circulation:</b> <span th:text="${el.circulation}"/></p>
-        <p><b>Post author:</b> <span th:text="${el.postAuthorName}"/></p>
-        <p><b>Post author:</b> <span th:text="${el.postAuthorName}"/></p>
+<!--        <p><b>Post user:</b> <span th:text="${el.postAuthorName}"/></p>-->
+        <p><b>Description:</b> <span th:text="${el.description}"/></p>
+        <p><b>Price:</b> <span th:text="${el.price}"/></p>
         <img th:src="@{/img/{filename}(filename = ${el.filename})}" width="200" height="200"><br><br>
         <a th:href="'/book/' + ${el.id} + '/edit'" class="btn btn-warning">Edit</a><br><br>
         <form th:action="'/book/' + ${el.id} + '/remove'" method="post">
@@ -33,5 +39,10 @@
 
 
 <div th:insert="blocks/footer :: footer"></div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>

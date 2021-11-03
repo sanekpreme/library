@@ -1,7 +1,6 @@
 package com.demo.library.config;
 
 import com.demo.library.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -14,7 +13,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    //@Autowired
+
     private final UserService userService;
 
     public WebSecurityConfig(UserService userService) {
@@ -26,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/registration", "/book", "/book/{id}", "/authors", "/static/**", "/author/{id}", "/category", "/category{id}", "/categories").permitAll()
+                .antMatchers("/", "/home", "/registration", "/book", "/book/{id}", "/authors", "/static/**", "/author/{id}", "/category", "/category{id}", "/categories", "/user", "/activate/*", "/about").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
