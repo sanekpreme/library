@@ -29,3 +29,19 @@ git clone https://github.com/sanekpreme/library.git
 cd java-project-examples/spring-boot-library
 ```
 The project is pre-configured for authorized users, so you need to create a profile on the application site and activate it using a letter sent to the mail. To access all the functions of the application, you must have administrator access rights, to do this, simply go to the administration tab and grant the rights to the required user.
+
+### Web Application Configuration
+
+Go to the application properties file and make changes to it according to your settings.
+
+```properties
+spring.datasource.url=jdbc:postgresql:your-path-to-db
+spring.datasource.username=some-username
+spring.datasource.password=some-password
+
+upload.path=path-for-save-images
+
+spring.mail.host=smtp.gmail.com (if you are using a different domain then change this setting)
+spring.mail.username=some@gmail.com (mail from which messages will be sent to activate the user account)
+spring.mail.password=some-password
+```
