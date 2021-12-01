@@ -56,38 +56,38 @@ public class BookController {
         return "bookAdd";
     }
 
-    @PostMapping("/book/add")
-    public String bookPostAdd(@ModelAttribute("bookDTO") BookDTO bookDTO,
-                              @RequestParam("file") MultipartFile file,
-                              @AuthenticationPrincipal User user,
-                              Model model) throws IOException {
-        Book book = new Book();
-        book.setId(bookDTO.getId());
-        book.setCirculation(bookDTO.getCirculation());
-        book.setAuthor(authorService.getAuthorById(bookDTO.getAuthorId()).get());
-        book.setYearOfPublishing(bookDTO.getYearOfPublishing());
-        book.setBinding(bookDTO.getBinding());
-        book.setIsbn(bookDTO.getIsbn());
-        book.setTitle(bookDTO.getTitle());
-        book.setFilename(bookDTO.getFilename());
-        book.setDescription(bookDTO.getDescription());
-        book.setPrice(bookDTO.getPrice());
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-            book.setFilename(resultFileName);
-
-        }
-        bookService.addBook(book);
-        return "redirect:/book";
-    }
+//    @PostMapping("/book/add")
+//    public String bookPostAdd(@ModelAttribute("bookDTO") BookDTO bookDTO,
+//                              @RequestParam("file") MultipartFile file,
+//                              @AuthenticationPrincipal User user,
+//                              Model model) throws IOException {
+//        Book book = new Book();
+//        book.setId(bookDTO.getId());
+//        book.setCirculation(bookDTO.getCirculation());
+//        book.setAuthor(authorService.getAuthorById(bookDTO.getAuthorId()).get());
+//        book.setYearOfPublishing(bookDTO.getYearOfPublishing());
+//        book.setBinding(bookDTO.getBinding());
+//        book.setIsbn(bookDTO.getIsbn());
+//        book.setTitle(bookDTO.getTitle());
+//        book.setFilename(bookDTO.getFilename());
+//        book.setDescription(bookDTO.getDescription());
+//        book.setPrice(bookDTO.getPrice());
+//        if (file != null && !file.getOriginalFilename().isEmpty()) {
+//            File uploadDir = new File(uploadPath);
+//
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + resultFileName));
+//            book.setFilename(resultFileName);
+//
+//        }
+//        bookService.addBook(book);
+//        return "redirect:/book";
+//    }
 
     @GetMapping("/book/{bookId}/edit")
     public String bookEdit(@PathVariable(value = "bookId") Integer bookId, Model model) {
@@ -123,44 +123,44 @@ public class BookController {
         return "redirect:/book";
     }
 
-    @PostMapping("/book/{bookId}/edit")
-    public String bookPostUpdate(@PathVariable(value = "bookId") Integer bookId,
-                                 @RequestParam String title,
-                                 @RequestParam String binding,
-                                 @RequestParam String isbn,
-                                 @RequestParam String yearOfPublishing,
-                                 @RequestParam String description,
-                                 @RequestParam int circulation,
-                                 @RequestParam double price,
-                                 @RequestParam("file") MultipartFile file,
-                                 Model model) throws IOException {
-        Book book = bookRepository.findById(bookId).orElseThrow();
-        BookDTO bookDTO = new BookDTO();
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-            book.setFilename(resultFileName);
-        }
-
-        book.setTitle(title);
-        book.setDescription(description);
-        book.setBinding(binding);
-        book.setIsbn(isbn);
-        book.setYearOfPublishing(yearOfPublishing);
-        book.setCirculation(circulation);
-        bookDTO.setAuthorId((book.getAuthor().getId()));
-        book.setPrice(price);
-
-        bookRepository.save(book);
-
-        return "redirect:/book";
-    }
+//    @PostMapping("/book/{bookId}/edit")
+//    public String bookPostUpdate(@PathVariable(value = "bookId") Integer bookId,
+//                                 @RequestParam String title,
+//                                 @RequestParam String binding,
+//                                 @RequestParam String isbn,
+//                                 @RequestParam String yearOfPublishing,
+//                                 @RequestParam String description,
+//                                 @RequestParam int circulation,
+//                                 @RequestParam double price,
+//                                 @RequestParam("file") MultipartFile file,
+//                                 Model model) throws IOException {
+//        Book book = bookRepository.findById(bookId).orElseThrow();
+//        BookDTO bookDTO = new BookDTO();
+//        if (file != null && !file.getOriginalFilename().isEmpty()) {
+//            File uploadDir = new File(uploadPath);
+//
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + resultFileName));
+//            book.setFilename(resultFileName);
+//        }
+//
+//        book.setTitle(title);
+//        book.setDescription(description);
+//        book.setBinding(binding);
+//        book.setIsbn(isbn);
+//        book.setYearOfPublishing(yearOfPublishing);
+//        book.setCirculation(circulation);
+//        bookDTO.setAuthorId((book.getAuthor().getId()));
+//        book.setPrice(price);
+//
+//        bookRepository.save(book);
+//
+//        return "redirect:/book";
+//    }
 
 }

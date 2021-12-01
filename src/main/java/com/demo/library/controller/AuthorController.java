@@ -48,27 +48,27 @@ public class AuthorController {
         return "authorAdd";
     }
 
-    @PostMapping("/author/add")
-    public String authorPostAdd(@ModelAttribute("author") Author author,
-                                @RequestParam("file") MultipartFile file,
-                                @AuthenticationPrincipal User user,
-                                Model model) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-            author.setFilename(resultFileName);
-
-        }
-        authorService.addAuthor(author);
-        return "redirect:/author";
-    }
+//    @PostMapping("/author/add")
+//    public String authorPostAdd(@ModelAttribute("author") Author author,
+//                                @RequestParam("file") MultipartFile file,
+//                                @AuthenticationPrincipal User user,
+//                                Model model) throws IOException {
+//        if (file != null && !file.getOriginalFilename().isEmpty()) {
+//            File uploadDir = new File(uploadPath);
+//
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + resultFileName));
+//            author.setFilename(resultFileName);
+//
+//        }
+//        authorService.addAuthor(author);
+//        return "redirect:/author";
+//    }
 
     @GetMapping("/author/{authorId}")
     public String authorPostDetails(@PathVariable(value = "authorId") Integer authorId, Model model) {
@@ -104,34 +104,34 @@ public class AuthorController {
         return "redirect:/author";
     }
 
-    @PostMapping("/author/{authorId}/edit")
-    public String authorPostUpdates(@PathVariable(value = "authorId") Integer authorId,
-                                    @RequestParam String authorCountry,
-                                    @RequestParam String authorDetails,
-                                    @RequestParam String authorName,
-                                    @RequestParam("file") MultipartFile file,
-                                    Model model) throws IOException {
-        Author author = authorRepository.findById(authorId).orElseThrow();
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + file.getOriginalFilename();
-            file.transferTo(new File(uploadPath + "/" + resultFileName));
-            author.setFilename(resultFileName);
-
-        }
-        author.setAuthorCountry(authorCountry);
-        author.setAuthorDetails(authorDetails);
-        author.setAuthorName(authorName);
-
-        authorRepository.save(author);
-
-        return "redirect:/author";
-    }
+//    @PostMapping("/author/{authorId}/edit")
+//    public String authorPostUpdates(@PathVariable(value = "authorId") Integer authorId,
+//                                    @RequestParam String authorCountry,
+//                                    @RequestParam String authorDetails,
+//                                    @RequestParam String authorName,
+//                                    @RequestParam("file") MultipartFile file,
+//                                    Model model) throws IOException {
+//        Author author = authorRepository.findById(authorId).orElseThrow(); //.orElseThrow()
+//        if (file != null && !file.getOriginalFilename().isEmpty()) {
+//            File uploadDir = new File(uploadPath);
+//
+//            if (!uploadDir.exists()) {
+//                uploadDir.mkdir();
+//            }
+//
+//            String uuidFile = UUID.randomUUID().toString();
+//            String resultFileName = uuidFile + "." + file.getOriginalFilename();
+//            file.transferTo(new File(uploadPath + "/" + resultFileName));
+//            author.setFilename(resultFileName);
+//
+//        }
+//        author.setAuthorCountry(authorCountry);
+//        author.setAuthorDetails(authorDetails);
+//        author.setAuthorName(authorName);
+//
+//        authorRepository.save(author);
+//
+//        return "redirect:/author";
+//    }
 
 }
